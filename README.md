@@ -1,1 +1,5 @@
-Docker compose build to start
+LibaryHub - Personal Libary
+ISMET ORGAN/47475
+
+docker-compose up --build
+
