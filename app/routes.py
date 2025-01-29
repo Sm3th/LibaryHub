@@ -16,32 +16,26 @@ def home():
         return redirect(url_for('main.login'))
     
     user_id = session['user_id']
-
-    # Kullanıcının kitaplarını çek
+    
     books = Book.query.filter_by(user_id=user_id)
-
-    # Arama ve filtreleme parametrelerini al
+  
     search_query = request.args.get("search", "").strip()
     category_filter = request.args.get("category", "")
     favorites_only = request.args.get("favorites", False)
-
-    # Arama sorgusu varsa, başlık veya yazar içinde arama yap
+ 
     if search_query:
         books = books.filter(
             (Book.title.ilike(f"%{search_query}%")) | (Book.author.ilike(f"%{search_query}%"))
         )
-
-    # Kategoriye göre filtreleme
+  
     if category_filter:
         books = books.filter_by(category=category_filter)
 
-    # Sadece favorilere eklenen kitapları listeleme
     if favorites_only:
         books = books.join(Favorite).filter(Favorite.user_id == user_id)
 
     books = books.all()
-
-    # Rastgele öne çıkan kitap seç
+    
     featured_book = random.choice(books) if books else None
 
     return render_template('index.html', books=books, featured_book=featured_book)

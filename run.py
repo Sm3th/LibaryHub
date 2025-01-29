@@ -2,7 +2,6 @@ from app import create_app, db
 
 app = create_app()
 
-# Uygulama bağlamında veritabanını oluşturma işlemi
 with app.app_context():
     db.create_all()
 

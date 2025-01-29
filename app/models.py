@@ -10,11 +10,11 @@ class Book(db.Model):
     available = db.Column(db.Boolean, default=True)
     category = db.Column(db.String(50), nullable=True)
     status = db.Column(db.String(20), default='Unread')  # 'Read', 'Reading', 'Unread'
-    description = db.Column(db.Text, nullable=True)  # Açıklama alanı
-    notes = db.Column(db.Text, nullable=True)  # Notlar alanı
+    description = db.Column(db.Text, nullable=True)  
+    notes = db.Column(db.Text, nullable=True)  
     archived = db.Column(db.Boolean, default=False)
     format = db.Column(db.String(20), nullable=False)  # 'E-book', 'Physical'
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)  # Kullanıcı ile ilişkilendirme
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     
     owner = db.relationship('User', backref='books', lazy=True)
 

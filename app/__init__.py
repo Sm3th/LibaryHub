@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import os
 
 
-load_dotenv()  # .env dosyasını yükle
+load_dotenv() 
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -19,7 +19,7 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from .routes import main  # Blueprintler
+    from .routes import main
     app.register_blueprint(main)
 
     return app

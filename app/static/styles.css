@@ -66,7 +66,6 @@ header h1 {
     margin-bottom: 10px;
 }
 
-/* Kitap Kartları */
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -75,7 +74,6 @@ header h1 {
     margin-top: 20px;
 }
 
-/* Kitap Kartı */
 .card {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -185,7 +183,6 @@ footer a:hover {
     }
 }
 
-/* Okuma Durumu Butonları */
 .read-status {
     margin-top: 10px;
 }
@@ -221,44 +218,37 @@ footer a:hover {
     font-size: 0.9rem;
 }
 
-/* Dark Mode Genel Stil */
 .dark-mode {
     background-color: #121212 !important;
     color: #e0e0e0 !important;
 }
 
-/* Navbar ve Header */
 .dark-mode header {
     background-color: #1f1f1f;
     border-bottom: 1px solid #333;
 }
 
-/* Kartlar */
 .dark-mode .card {
     background-color: #1e1e1e;
     color: #e0e0e0;
     border: 1px solid #333;
 }
 
-/* Form alanları */
 .dark-mode input, .dark-mode select, .dark-mode textarea {
     background-color: #333;
     color: #e0e0e0;
     border: 1px solid #555;
 }
 
-/* Linkler */
 .dark-mode a {
     color: #bb86fc;
 }
 
-/* Footer */
 .dark-mode footer {
     background-color: #1f1f1f;
     color: #bbb;
 }
 
-/* Butonlar */
 .dark-mode .btn {
     border: 1px solid #bbb;
     color: #e0e0e0;
