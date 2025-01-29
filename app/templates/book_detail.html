@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card shadow-sm p-4 mt-4">
+        <h2 class="text-primary">{{ book.title }}</h2>
+        <p><strong>Author:</strong> {{ book.author }}</p>
+        <p><strong>Year:</strong> {{ book.published_year }}</p>
+        <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+        <p><strong>Description:</strong> {{ book.description or "No description available." }}</p>
+
+        <!-- Notes Section -->
+        {% if 'user_id' in session and session['user_id'] == book.user_id %}
+        <hr>
+        <h4>Your Notes:</h4>
+        <form action="{{ url_for('main.edit_notes', book_id=book.id) }}" method="POST">
+            <textarea name="notes" class="form-control" rows="4">{{ book.notes or '' }}</textarea>
+            <button type="submit" class="btn btn-success mt-3">Save Notes</button>
+        </form>
+        {% else %}
+        <p><strong>Notes:</strong> {{ book.notes or "No notes added yet." }}</p>
+        {% endif %}
+
+        <a href="{{ url_for('main.home') }}" class="btn btn-secondary mt-3">Back to Home</a>
+    </div>
+</div>
+{% endblock %}
