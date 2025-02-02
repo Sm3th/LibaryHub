@@ -1,8 +1,7 @@
-version: '3.9'
-
 services:
   db:
     image: postgres:14
+    restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
@@ -11,15 +10,22 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      retries: 5
+      timeout: 3s
 
   web:
     build: .
-    command: flask run --host=0.0.0.0
+    restart: unless-stopped
+    command: flask run --host=0.0.0.0 --port=5000
     volumes:
       - .:/app
     ports:
       - "5000:5000"
     environment:
+      DOCKERIZED: "true"
       FLASK_APP: run.py
       FLASK_ENV: development
       SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://postgres:password@db:5432/libraryhub
